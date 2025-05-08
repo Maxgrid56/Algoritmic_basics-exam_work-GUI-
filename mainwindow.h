@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QtWidgets>
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -29,9 +30,20 @@ private:
 
     void startingScreen();                              //основная функция
 
+    int mWWidth;                                        //переменные, хранящие в себе размеры основного окна
+    int mWHeight;
 
     QVector<double> results (QVector<double> &argVector);       //функция, вычисляющая корни
 
+    void extraLabelsHide();                             //скрывает лейблы, используемые  только в 5-м и 6-м методах
+    void extraLabelsShow(int choice);                              //показывает скрытые лейблы
+
+    void method1();
+    void method2();
+    void method3();
+    void method4();
+    void method5();
+    void method6();
 
     QVector<double> argVector;                          //arg1, arg2, arg3;     вектор аргументов, введённых пользователем;
     QVector<double> roots;                              //Discr, root1, root2;  вектор, хранящий решение уравнения;
@@ -91,6 +103,7 @@ private:
     QWidget* arg1Widget;
     QWidget* arg2Widget;
     QWidget* arg3Widget;
+    QPushButton* argCleanerButton;
 
     QDoubleValidator* argValidator;
 
@@ -116,18 +129,54 @@ private:
 
 
     QWidget* resultWindow;                          //новое окно, в котором будет заключаться решение уравнения и его виджеты
+    QVBoxLayout* resultWindowMain;
     QLabel* resultTitle;
+    QLabel* resultStep1;
+    QLabel* resultStep2;
+    QLabel* resultStep3;
+    QLabel* resultStep4;
+    QLabel* resultStep5;
+    QLabel* resultStep6;
+    QLabel* resultAnswer;
 
+    QLabel* resultStep7;
+    QLabel* resultStep8;
+    QLabel* resultStep9;
+    QLabel* resultStep10;
+    QLabel* resultStep11;
+    QLabel* resultStep12;
+    QLabel* resultStep13;
+    QLabel* resultStep14;
+    QLabel* resultStep15;
+    QLabel* resultStep16;
+    QLabel* resultStep17;
+    QLabel* resultStep18;
+    QLabel* resultStep19;
+    QLabel* resultStep20;
+    QLabel* resultStep21;
+    QLabel* resultStep22;
+    QLabel* resultStep23;
+    QLabel* resultStep24;
+    QLabel* resultStep25;
+    QLabel* resultStep26;
+    QLabel* resultStep27;
+    QLabel* resultStep28;
+    QLabel* resultStep29;
+    QLabel* resultStep30;
+    QLabel* resultStep31;
+    QLabel* resultStep32;
+    QLabel* resultStep33;
+    QLabel* resultStep34;
 
 signals:
     void argsChanged();
 
-    void engageStep2(QVector<double> argVector, QVector<double> roots, int menuIndex);
+    void engageStep2();
 
 private slots:
-    void changeSavedMenuIndex(int newIndex);        //меняет сохранённый индекс выбранного пункта меню
+    void argCleaner();                              //очищает ввод пользователя
 
-    void dataTransferArg1();                            //передаёт информацию из конкретного arg в массив argVector
+    void dataTransferArg1();                        //передаёт информацию из конкретного arg в массив argVector
     void dataTransferArg2();
     void dataTransferArg3();
 
@@ -135,7 +184,7 @@ private slots:
 
     void launchStep1();
 
-    void launchStep2(QVector<double> argVector, QVector<double> roots, int menuIndex);
+    void launchStep2();
 
 };
 #endif // MAINWINDOW_H
