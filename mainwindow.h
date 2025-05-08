@@ -169,7 +169,9 @@ private:
     QLabel* resultStep34;
 
 signals:
-    void argsChanged();
+    void arg1Changed();
+    void arg2Changed();
+    void arg3Changed();
 
     void engageStep2();
 
@@ -180,7 +182,9 @@ private slots:
     void dataTransferArg2();
     void dataTransferArg3();
 
-    void dynamicEquation();                         //динамическое изменение equation с целью отображения текущего уравнения
+    void dynamicEquationArg1();                         //динамическое изменение equation с целью отображения текущего уравнения
+    void dynamicEquationArg2();
+    void dynamicEquationArg3();
 
     void launchStep1();
 

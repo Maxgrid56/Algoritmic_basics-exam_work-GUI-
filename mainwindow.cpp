@@ -12,24 +12,24 @@ void MainWindow::dataTransferArg1()
 {
     argVector[0] = arg1->text().toDouble();
 
-    emit argsChanged();
+    emit arg1Changed();
 }
 
 void MainWindow::dataTransferArg2()
 {
     argVector[1] = arg2->text().toDouble();
 
-    emit argsChanged();
+    emit arg2Changed();
 }
 
 void MainWindow::dataTransferArg3()
 {
     argVector[2] = arg3->text().toDouble();
 
-    emit argsChanged();
+    emit arg3Changed();
 }
 
-void MainWindow::dynamicEquation()
+void MainWindow::dynamicEquationArg1()
 {
     if(argVector[0] == 1)
     {
@@ -37,20 +37,36 @@ void MainWindow::dynamicEquation()
     }
     else arg1Equation->show();
 
+    arg1Equation->setText(arg1->text());
+}
+
+void MainWindow::dynamicEquationArg2()
+{
+
     if(argVector[1] < 0)
     {
         firstSign->hide();
     }
     else firstSign->show();
 
+    if(argVector[1] == 1)
+    {
+        arg2Equation->hide();
+    }
+    else arg2Equation->show();
+
+    arg2Equation->setText(arg2->text());
+
+}
+
+void MainWindow::dynamicEquationArg3()
+{
     if(argVector[2] < 0)
     {
         secondSign->hide();
     }
     else secondSign->show();
 
-    arg1Equation->setText(arg1->text());
-    arg2Equation->setText(arg2->text());
     arg3Equation->setText(arg3->text());
 }
 
@@ -882,7 +898,9 @@ void MainWindow::startingScreen()                                           //о
 
     mainWidgetLowerPartRight->setLayout(lowerPartRightLayout);
 
-    connect(this, SIGNAL(argsChanged()), this, SLOT(dynamicEquation()));     //слот dataTransfer издаёт сигнал, вызывающий изменение динамического уравнения
+    connect(this, SIGNAL(arg1Changed()), this, SLOT(dynamicEquationArg1()));     //слот dataTransfer издаёт сигнал, вызывающий изменение динамического уравнения
+    connect(this, SIGNAL(arg2Changed()), this, SLOT(dynamicEquationArg2()));
+    connect(this, SIGNAL(arg3Changed()), this, SLOT(dynamicEquationArg3()));
 
     connect(arg1, SIGNAL(textEdited(QString)), this, SLOT(dataTransferArg1()));   //любое изменение arg меняет уравнение в правой части экрана
     connect(arg2, SIGNAL(textEdited(QString)), this, SLOT(dataTransferArg2()));
